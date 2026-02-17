@@ -71,13 +71,13 @@ export default function Footer() {
         <p className="font-handwriting text-xl sm:text-2xl text-stone-400 leading-relaxed mb-8">
           I know you don&apos;t always feel it, but Mom and Dad would be so
           proud of the man you&apos;re becoming. They&apos;re with us in every
-          one of these memories,in every laugh, every daft moment, every bit
+          one of these memories, in every laugh, every daft moment, every bit
           of love we share. We carry them with us always.
         </p>
 
         <p className="font-handwriting text-xl sm:text-2xl text-stone-400 leading-relaxed mb-8">
           I believe in you, Pete. I believe in where you&apos;re heading. This
-          year is yours,I can feel it. And no matter what, I&apos;m right
+          year is yours, I can feel it. And no matter what, I&apos;m right
           here. Always have been, always will be.
         </p>
 

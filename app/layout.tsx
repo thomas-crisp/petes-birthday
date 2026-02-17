@@ -24,7 +24,7 @@ const ibmMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Dear Pete... | Happy 24th Birthday",
   description:
-    "A letter to my brother,twenty-four years of memories, mischief, and love.",
+    "A letter to my brother, twenty-four years of memories, mischief, and love.",
 };
 
 export default function RootLayout({

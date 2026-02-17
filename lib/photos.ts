@@ -43,7 +43,7 @@ export const sections: LetterSection[] = [
     era: "Those Curls & That Smile",
     yearRange: "2005 - 2006",
     narrative:
-      "That mop of blonde curls and the cheekiest smile going. You could get away with murder,and you knew it. Elmdon Park, birthday cakes, always wanting to hold someone's hand. You were our little shadow and we loved every second of it (well, most of the time).",
+      "That mop of blonde curls and the cheekiest smile going. You could get away with murder, and you knew it. Elmdon Park, birthday cakes, always wanting to hold someone's hand. You were our little shadow and we loved every second of it (well, most of the time).",
     photos: [
       {
         src: "/Pete/2005-07-17 tom peter elmdon park3.jpg",
@@ -69,7 +69,7 @@ export const sections: LetterSection[] = [
     era: "School Days",
     yearRange: "2007 - 2010",
     narrative:
-      "First day of school in that green jumper,you looked well proud. Guitar Hero sessions where you genuinely believed you were a rockstar. Matching football shirts on holiday. The three of us were inseparable. Always were.",
+      "First day of school in that green jumper, you looked well proud. Guitar Hero sessions where you genuinely believed you were a rockstar. Matching football shirts on holiday. The three of us were inseparable. Always were.",
     photos: [
       {
         src: "/Pete/IMG-20240217-WA0095.jpg",
@@ -95,7 +95,7 @@ export const sections: LetterSection[] = [
     era: "Growing Up",
     yearRange: "2011 - 2014",
     narrative:
-      "Beach days turned into proper adventures. The three of us out there together,no agenda, no plan, just us. You were still the funny one, always had everyone in stitches. But I could see you becoming your own person, and I was so proud even then.",
+      "Beach days turned into proper adventures. The three of us out there together, no agenda, no plan, just us. You were still the funny one, always had everyone in stitches. But I could see you becoming your own person, and I was so proud even then.",
     photos: [
       {
         src: "/Pete/IMG-20240217-WA0093.jpg",
@@ -173,7 +173,7 @@ export const sections: LetterSection[] = [
     era: "Look At Us Now",
     yearRange: "2021 - 2024",
     narrative:
-      "Distance separates us now, but you and Tim are still the foundation of my heart. That will never change. Beach walks, road trips, hilltops with the best view,from that curly-haired little kid to the man standing next to me. Though height might question who the big brother is these days.",
+      "Distance separates us now, but you and Tim are still the foundation of my heart. That will never change. Beach walks, road trips, hilltops with the best view, from that curly-haired little kid to the man standing next to me. Though height might question who the big brother is these days.",
     photos: [
       {
         src: "/Pete/PXL_20220507_162447479.jpg",
@@ -205,7 +205,7 @@ export const sections: LetterSection[] = [
     era: "Always Brothers",
     yearRange: "Forever",
     narrative:
-      "Christmas mornings, video calls across the miles, woodland walks in the cold. Through every year, every chapter, every daft moment,it's always been the three of us. And it always will be.",
+      "Christmas mornings, video calls across the miles, woodland walks in the cold. Through every year, every chapter, every daft moment, it's always been the three of us. And it always will be.",
     photos: [
       {
         src: "/Pete/IMG_5028.JPG",

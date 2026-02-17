@@ -6,19 +6,43 @@ export default function AudioPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasAudio, setHasAudio] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const playingRef = useRef(false);
 
   useEffect(() => {
     const audio = new Audio("/audio/ambient.mp3");
     audio.loop = true;
     audio.volume = 0.3;
+    audio.preload = "auto";
     audioRef.current = audio;
 
-    // Check if audio file exists
-    audio.addEventListener("canplaythrough", () => setHasAudio(true));
+    const tryPlay = () => {
+      if (playingRef.current || !audioRef.current) return;
+      audioRef.current.play().then(() => {
+        playingRef.current = true;
+        setIsPlaying(true);
+        // Only remove listeners after successful playback
+        events.forEach((e) => document.removeEventListener(e, tryPlay, true));
+      }).catch(() => {
+        // Still blocked, listeners stay active for next interaction
+      });
+    };
+
+    const events = ["click", "scroll", "touchstart", "keydown", "mousedown", "pointerdown"];
+
+    audio.addEventListener("canplaythrough", () => {
+      setHasAudio(true);
+      // Attempt autoplay immediately
+      tryPlay();
+    });
+
     audio.addEventListener("error", () => setHasAudio(false));
     audio.load();
 
+    // Register listeners on capture phase so we catch interactions early
+    events.forEach((e) => document.addEventListener(e, tryPlay, { capture: true, passive: true }));
+
     return () => {
+      events.forEach((e) => document.removeEventListener(e, tryPlay, true));
       audio.pause();
       audio.src = "";
     };
@@ -28,10 +52,14 @@ export default function AudioPlayer() {
     if (!audioRef.current) return;
     if (isPlaying) {
       audioRef.current.pause();
+      playingRef.current = false;
+      setIsPlaying(false);
     } else {
-      audioRef.current.play();
+      audioRef.current.play().then(() => {
+        playingRef.current = true;
+        setIsPlaying(true);
+      });
     }
-    setIsPlaying(!isPlaying);
   };
 
   if (!hasAudio) return null;
@@ -39,12 +67,12 @@ export default function AudioPlayer() {
   return (
     <button
       onClick={toggle}
-      className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-stone-800/80 backdrop-blur-sm text-stone-200 flex items-center justify-center hover:bg-stone-700/90 transition-all duration-300 shadow-lg"
+      className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-stone-800/80 backdrop-blur-sm text-stone-200 flex items-center justify-center transition-all duration-300 shadow-lg opacity-0 hover:opacity-100"
       aria-label={isPlaying ? "Pause music" : "Play music"}
     >
       {isPlaying ? (
         <svg
-          className="w-5 h-5 animate-pulse"
+          className="w-5 h-5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -53,7 +81,7 @@ export default function AudioPlayer() {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
+            d="M15.75 5.25v13.5m-7.5-13.5v13.5"
           />
         </svg>
       ) : (
@@ -67,12 +95,7 @@ export default function AudioPlayer() {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M17.25 9.75L19.5 12m0 0l-2.25 2.25M19.5 12H4.5m0 0l2.25 2.25M4.5 12l2.25-2.25M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3 3l18 18"
+            d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z"
           />
         </svg>
       )}
